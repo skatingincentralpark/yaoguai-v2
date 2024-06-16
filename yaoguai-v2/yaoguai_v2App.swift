@@ -12,7 +12,8 @@ import SwiftData
 struct yaoguai_v2App: App {
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
-            Item.self,
+			WorkoutTemplate.self,
+			WorkoutRecord.self
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 

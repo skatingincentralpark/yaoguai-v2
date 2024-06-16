@@ -12,6 +12,14 @@
 		A127DDE82C1E714E00B1A59B /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = A127DDE72C1E714E00B1A59B /* Item.swift */; };
 		A127DDEA2C1E715000B1A59B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A127DDE92C1E715000B1A59B /* Assets.xcassets */; };
 		A127DDED2C1E715000B1A59B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A127DDEC2C1E715000B1A59B /* Preview Assets.xcassets */; };
+		A127DDF42C1E718600B1A59B /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = A127DDF32C1E718600B1A59B /* Record.swift */; };
+		A127DDF72C1E721100B1A59B /* Template.swift in Sources */ = {isa = PBXBuildFile; fileRef = A127DDF62C1E721100B1A59B /* Template.swift */; };
+		A127DDF92C1E739900B1A59B /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = A127DDF82C1E739900B1A59B /* Exercise.swift */; };
+		A127DDFB2C1E795700B1A59B /* Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = A127DDFA2C1E795700B1A59B /* Preview.swift */; };
+		A127DDFF2C1E7B7A00B1A59B /* WorkoutTemplateEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A127DDFE2C1E7B7A00B1A59B /* WorkoutTemplateEditor.swift */; };
+		A127DE012C1E7CA800B1A59B /* ExerciseSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = A127DE002C1E7CA800B1A59B /* ExerciseSelector.swift */; };
+		A127DE032C1E8A9F00B1A59B /* ExerciseTemplateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A127DE022C1E8A9F00B1A59B /* ExerciseTemplateView.swift */; };
+		A127DE052C1E8C8000B1A59B /* SetTemplateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A127DE042C1E8C8000B1A59B /* SetTemplateView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +29,14 @@
 		A127DDE72C1E714E00B1A59B /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		A127DDE92C1E715000B1A59B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A127DDEC2C1E715000B1A59B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		A127DDF32C1E718600B1A59B /* Record.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
+		A127DDF62C1E721100B1A59B /* Template.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Template.swift; sourceTree = "<group>"; };
+		A127DDF82C1E739900B1A59B /* Exercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
+		A127DDFA2C1E795700B1A59B /* Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preview.swift; sourceTree = "<group>"; };
+		A127DDFE2C1E7B7A00B1A59B /* WorkoutTemplateEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutTemplateEditor.swift; sourceTree = "<group>"; };
+		A127DE002C1E7CA800B1A59B /* ExerciseSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseSelector.swift; sourceTree = "<group>"; };
+		A127DE022C1E8A9F00B1A59B /* ExerciseTemplateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseTemplateView.swift; sourceTree = "<group>"; };
+		A127DE042C1E8C8000B1A59B /* SetTemplateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetTemplateView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,9 +69,10 @@
 		A127DDE22C1E714E00B1A59B /* yaoguai-v2 */ = {
 			isa = PBXGroup;
 			children = (
+				A127DDFD2C1E7A1100B1A59B /* View */,
+				A127DDF52C1E718900B1A59B /* Model */,
+				A127DDFC2C1E795F00B1A59B /* Utility */,
 				A127DDE32C1E714E00B1A59B /* yaoguai_v2App.swift */,
-				A127DDE52C1E714E00B1A59B /* ContentView.swift */,
-				A127DDE72C1E714E00B1A59B /* Item.swift */,
 				A127DDE92C1E715000B1A59B /* Assets.xcassets */,
 				A127DDEB2C1E715000B1A59B /* Preview Content */,
 			);
@@ -68,6 +85,37 @@
 				A127DDEC2C1E715000B1A59B /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		A127DDF52C1E718900B1A59B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A127DDF32C1E718600B1A59B /* Record.swift */,
+				A127DDE72C1E714E00B1A59B /* Item.swift */,
+				A127DDF62C1E721100B1A59B /* Template.swift */,
+				A127DDF82C1E739900B1A59B /* Exercise.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A127DDFC2C1E795F00B1A59B /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				A127DDFA2C1E795700B1A59B /* Preview.swift */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
+		A127DDFD2C1E7A1100B1A59B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A127DDE52C1E714E00B1A59B /* ContentView.swift */,
+				A127DDFE2C1E7B7A00B1A59B /* WorkoutTemplateEditor.swift */,
+				A127DE002C1E7CA800B1A59B /* ExerciseSelector.swift */,
+				A127DE022C1E8A9F00B1A59B /* ExerciseTemplateView.swift */,
+				A127DE042C1E8C8000B1A59B /* SetTemplateView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -140,9 +188,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A127DDF72C1E721100B1A59B /* Template.swift in Sources */,
+				A127DE012C1E7CA800B1A59B /* ExerciseSelector.swift in Sources */,
 				A127DDE62C1E714E00B1A59B /* ContentView.swift in Sources */,
+				A127DE032C1E8A9F00B1A59B /* ExerciseTemplateView.swift in Sources */,
 				A127DDE82C1E714E00B1A59B /* Item.swift in Sources */,
+				A127DDF42C1E718600B1A59B /* Record.swift in Sources */,
+				A127DDFF2C1E7B7A00B1A59B /* WorkoutTemplateEditor.swift in Sources */,
+				A127DDFB2C1E795700B1A59B /* Preview.swift in Sources */,
+				A127DE052C1E8C8000B1A59B /* SetTemplateView.swift in Sources */,
 				A127DDE42C1E714E00B1A59B /* yaoguai_v2App.swift in Sources */,
+				A127DDF92C1E739900B1A59B /* Exercise.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
