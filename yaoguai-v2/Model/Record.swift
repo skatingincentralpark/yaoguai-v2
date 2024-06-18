@@ -11,9 +11,30 @@ import SwiftData
 struct SetRecord: Identifiable, Codable, Equatable {
 	var id = UUID()
 	var value: Double?
-	var rpe: Double?
 	var reps: Int?
-	var complete = false
+	var rpe: Double?
+	var template: SetTemplate?
+	
+	private var _complete = false
+	
+	var complete: Bool {
+		get {
+			_complete
+		}
+		set {
+			autofillFromTemplate()
+			template = nil
+			_complete = newValue
+		}
+	}
+	
+	private mutating func autofillFromTemplate() {
+		if let template = template {
+			if value == nil { value = template.value }
+			if reps == nil { reps = template.reps }
+			if rpe == nil { rpe = template.rpe }
+		}
+	}
 	
 	var valueString: String? {
 		guard let value = value else { return nil }
@@ -31,13 +52,9 @@ struct SetRecord: Identifiable, Codable, Equatable {
 	}
 }
 
-@Model
-final class WorkoutRecord {
-	var name: String
-	@Relationship(deleteRule: .cascade) var exercises = [ExerciseRecord]()
-	
-	init(name: String) {
-		self.name = name
+extension SetRecord {
+	init(from template: SetTemplate) {
+		self.template = template
 	}
 }
 
@@ -47,7 +64,82 @@ final class ExerciseRecord {
 	var sets = [SetRecord]()
 	var exerciseDetails: Exercise?
 	
+	init(sets: [SetRecord]? = nil, exerciseDetails: Exercise? = nil) {
+		if let sets {
+			self.sets = sets
+		}
+		
+		if let exerciseDetails {
+			self.exerciseDetails = exerciseDetails
+		}
+	}
+	
+	init(from template: ExerciseTemplate) {
+		self.exerciseDetails = template.exerciseDetails
+		self.sets = template.sets.map { setTemplate in
+			SetRecord(from: setTemplate)
+		}
+	}
+}
+
+@Model
+final class WorkoutRecord {
+	var name = ""
+	var date: Date = Date()
+	@Relationship(deleteRule: .cascade) var exercises = [ExerciseRecord]()
+	
+	init(name: String, exercises: [ExerciseRecord]? = nil) {
+		self.name = name
+		
+		if let exercises {
+			self.exercises = exercises
+		}
+	}
+	
+	init(from template: WorkoutTemplate) {
+		self.name = template.name
+		self.exercises = template.exercises.map { template in
+			ExerciseRecord(from: template)
+		}
+	}
+	
 	init() {
 		
+	}
+}
+
+// MARK: - Example Extensions
+
+extension SetRecord {
+	enum Example {
+		static var complete: SetRecord {
+			var record = SetRecord(value: 100.0, reps: 10, rpe: 8.0)
+			record.complete = true
+			return record
+		}
+		
+		static var incomplete: SetRecord {
+			SetRecord(value: 100.0, reps: 10, rpe: 8.0)
+		}
+		
+		static var withTemplate: SetRecord {
+			SetRecord(template: SetTemplate(value: 20.0, reps: 5, rpe: 5.0))
+		}
+	}
+	
+	static var example: Example.Type {
+		Example.self
+	}
+}
+
+extension ExerciseRecord {
+	static var example: ExerciseRecord {
+		ExerciseRecord(sets: [SetRecord.example.incomplete, SetRecord.example.incomplete, SetRecord()], exerciseDetails: Exercise.example.pullups)
+	}
+}
+
+extension WorkoutRecord {
+	static var example: WorkoutRecord {
+		WorkoutRecord(name: "Upper", exercises: [ExerciseRecord.example])
 	}
 }

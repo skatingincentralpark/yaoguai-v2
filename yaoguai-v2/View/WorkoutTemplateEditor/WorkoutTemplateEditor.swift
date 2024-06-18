@@ -11,12 +11,22 @@ import SwiftData
 struct WorkoutTemplateEditor: View {
 	@Environment(\.modelContext) private var modelContext
 	@Environment(\.dismiss) private var dismiss
-
-	@Query private var exerciseTemplates: [ExerciseTemplate]
 	
 	@State private var name: String = ""
-	@State private var exercises = [ExerciseTemplate]()
+	@State private var exerciseTemplates = [ExerciseTemplate]()
 	@State private var exerciseSelectorPresented = false
+	
+	var existingTemplate: WorkoutTemplate?
+	
+	init(existingTemplate: WorkoutTemplate? = nil) {
+		guard let existingTemplate else {
+			return
+		}
+		
+		self._name = State(initialValue: existingTemplate.name)
+		self._exerciseTemplates = State(initialValue: existingTemplate.exercises)
+		self.existingTemplate = existingTemplate
+	}
 	
     var body: some View {
 		List {
@@ -24,7 +34,7 @@ struct WorkoutTemplateEditor: View {
 				TextField("Name", text: $name)
 			}
 						
-			ForEach(exercises) { template in
+			ForEach(exerciseTemplates) { template in
 				Section {
 					ExerciseTemplateView(exerciseTemplate: template, deleteExerciseTemplate: deleteExerciseTemplate)
 				}
@@ -46,11 +56,11 @@ struct WorkoutTemplateEditor: View {
 	func addExercise(_ exercise: Exercise) {
 		let exerciseTemplate = ExerciseTemplate()
 		exerciseTemplate.exerciseDetails = exercise
-		exercises.append(exerciseTemplate)
+		exerciseTemplates.append(exerciseTemplate)
 	}
 	
 	func deleteExerciseTemplate(template: ExerciseTemplate) {
-		exercises = exercises.filter { $0.id != template.id }
+		exerciseTemplates = exerciseTemplates.filter { $0.id != template.id }
 	}
 	
 	func saveTemplate() {
@@ -59,16 +69,22 @@ struct WorkoutTemplateEditor: View {
 			return
 		}
 		
-		guard exercises.count > 0 else {
+		guard exerciseTemplates.count > 0 else {
 			print ("Can't save with no exercises")
 			return
 		}
 		
 		dismiss()
 		
-		let newTemplate = WorkoutTemplate(name: name)
-		modelContext.insert(newTemplate)
-		newTemplate.exercises = exercises
+		if let existingTemplate {
+			existingTemplate.name = name
+			existingTemplate.exercises = exerciseTemplates
+			modelContext.insert(existingTemplate)
+		} else {
+			let newTemplate = WorkoutTemplate(name: name)
+			modelContext.insert(newTemplate)
+			newTemplate.exercises = exerciseTemplates
+		}
 	}
 }
 

@@ -18,12 +18,40 @@ enum Unit: String, Codable, CaseIterable, Identifiable {
 
 @Model
 final class Exercise {
-	var name: String
+	@Attribute(.unique) var name: String
 	var unit: Unit
 	var exerciseRecords = [ExerciseRecord]()
 	
 	init(name: String, unit: Unit) {
 		self.name = name
 		self.unit = unit
+	}
+}
+
+extension Exercise {
+	enum Example {
+		static var pullups: Exercise {
+			Exercise(name: "Pullups", unit: .kg)
+		}
+		
+		static var pushups: Exercise {
+			Exercise(name: "Pushups", unit: .kg)
+		}
+		
+		static var squats: Exercise {
+			Exercise(name: "Squats", unit: .kg)
+		}
+		
+		static var deadlifts: Exercise {
+			Exercise(name: "Deadlifts", unit: .kg)
+		}
+		
+		static var all: [Exercise] {
+			return [pullups, pushups, squats, deadlifts]
+		}
+	}
+
+	static var example: Example.Type {
+		return Example.self
 	}
 }

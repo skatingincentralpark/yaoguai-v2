@@ -20,6 +20,13 @@
 		A127DE012C1E7CA800B1A59B /* ExerciseSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = A127DE002C1E7CA800B1A59B /* ExerciseSelector.swift */; };
 		A127DE032C1E8A9F00B1A59B /* ExerciseTemplateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A127DE022C1E8A9F00B1A59B /* ExerciseTemplateView.swift */; };
 		A127DE052C1E8C8000B1A59B /* SetTemplateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A127DE042C1E8C8000B1A59B /* SetTemplateView.swift */; };
+		A127DE092C1EB86F00B1A59B /* WorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A127DE082C1EB86F00B1A59B /* WorkoutView.swift */; };
+		A127DE0B2C1EBD6600B1A59B /* ExerciseRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A127DE0A2C1EBD6600B1A59B /* ExerciseRecordView.swift */; };
+		A127DE0D2C1ED91000B1A59B /* ExerciseRecordHeaderRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A127DE0C2C1ED91000B1A59B /* ExerciseRecordHeaderRow.swift */; };
+		A127DE0F2C1ED9B100B1A59B /* SetRecordRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A127DE0E2C1ED9B100B1A59B /* SetRecordRow.swift */; };
+		A14C76252C1F949600F89F2D /* WorkoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14C76242C1F949600F89F2D /* WorkoutManager.swift */; };
+		A14D2C612C22378A0034278F /* WorkoutDashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14D2C602C22378A0034278F /* WorkoutDashboard.swift */; };
+		A14D2C632C2237E10034278F /* ExerciseList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14D2C622C2237E10034278F /* ExerciseList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +44,13 @@
 		A127DE002C1E7CA800B1A59B /* ExerciseSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseSelector.swift; sourceTree = "<group>"; };
 		A127DE022C1E8A9F00B1A59B /* ExerciseTemplateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseTemplateView.swift; sourceTree = "<group>"; };
 		A127DE042C1E8C8000B1A59B /* SetTemplateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetTemplateView.swift; sourceTree = "<group>"; };
+		A127DE082C1EB86F00B1A59B /* WorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutView.swift; sourceTree = "<group>"; };
+		A127DE0A2C1EBD6600B1A59B /* ExerciseRecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseRecordView.swift; sourceTree = "<group>"; };
+		A127DE0C2C1ED91000B1A59B /* ExerciseRecordHeaderRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseRecordHeaderRow.swift; sourceTree = "<group>"; };
+		A127DE0E2C1ED9B100B1A59B /* SetRecordRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetRecordRow.swift; sourceTree = "<group>"; };
+		A14C76242C1F949600F89F2D /* WorkoutManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutManager.swift; sourceTree = "<group>"; };
+		A14D2C602C22378A0034278F /* WorkoutDashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDashboard.swift; sourceTree = "<group>"; };
+		A14D2C622C2237E10034278F /* ExerciseList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +106,7 @@
 			children = (
 				A127DDF32C1E718600B1A59B /* Record.swift */,
 				A127DDE72C1E714E00B1A59B /* Item.swift */,
+				A14C76242C1F949600F89F2D /* WorkoutManager.swift */,
 				A127DDF62C1E721100B1A59B /* Template.swift */,
 				A127DDF82C1E739900B1A59B /* Exercise.swift */,
 			);
@@ -109,13 +124,35 @@
 		A127DDFD2C1E7A1100B1A59B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A127DE072C1EB85800B1A59B /* WorkoutView */,
+				A127DE062C1EB81300B1A59B /* WorkoutTemplateEditor */,
 				A127DDE52C1E714E00B1A59B /* ContentView.swift */,
-				A127DDFE2C1E7B7A00B1A59B /* WorkoutTemplateEditor.swift */,
+				A14D2C622C2237E10034278F /* ExerciseList.swift */,
+				A14D2C602C22378A0034278F /* WorkoutDashboard.swift */,
+				A127DE082C1EB86F00B1A59B /* WorkoutView.swift */,
+				A127DE0A2C1EBD6600B1A59B /* ExerciseRecordView.swift */,
+				A127DE0E2C1ED9B100B1A59B /* SetRecordRow.swift */,
+				A127DE0C2C1ED91000B1A59B /* ExerciseRecordHeaderRow.swift */,
 				A127DE002C1E7CA800B1A59B /* ExerciseSelector.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A127DE062C1EB81300B1A59B /* WorkoutTemplateEditor */ = {
+			isa = PBXGroup;
+			children = (
+				A127DDFE2C1E7B7A00B1A59B /* WorkoutTemplateEditor.swift */,
 				A127DE022C1E8A9F00B1A59B /* ExerciseTemplateView.swift */,
 				A127DE042C1E8C8000B1A59B /* SetTemplateView.swift */,
 			);
-			path = View;
+			path = WorkoutTemplateEditor;
+			sourceTree = "<group>";
+		};
+		A127DE072C1EB85800B1A59B /* WorkoutView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = WorkoutView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -190,14 +227,21 @@
 			files = (
 				A127DDF72C1E721100B1A59B /* Template.swift in Sources */,
 				A127DE012C1E7CA800B1A59B /* ExerciseSelector.swift in Sources */,
+				A127DE0B2C1EBD6600B1A59B /* ExerciseRecordView.swift in Sources */,
+				A14D2C612C22378A0034278F /* WorkoutDashboard.swift in Sources */,
 				A127DDE62C1E714E00B1A59B /* ContentView.swift in Sources */,
+				A14D2C632C2237E10034278F /* ExerciseList.swift in Sources */,
 				A127DE032C1E8A9F00B1A59B /* ExerciseTemplateView.swift in Sources */,
+				A14C76252C1F949600F89F2D /* WorkoutManager.swift in Sources */,
+				A127DE0F2C1ED9B100B1A59B /* SetRecordRow.swift in Sources */,
 				A127DDE82C1E714E00B1A59B /* Item.swift in Sources */,
 				A127DDF42C1E718600B1A59B /* Record.swift in Sources */,
 				A127DDFF2C1E7B7A00B1A59B /* WorkoutTemplateEditor.swift in Sources */,
+				A127DE0D2C1ED91000B1A59B /* ExerciseRecordHeaderRow.swift in Sources */,
 				A127DDFB2C1E795700B1A59B /* Preview.swift in Sources */,
 				A127DE052C1E8C8000B1A59B /* SetTemplateView.swift in Sources */,
 				A127DDE42C1E714E00B1A59B /* yaoguai_v2App.swift in Sources */,
+				A127DE092C1EB86F00B1A59B /* WorkoutView.swift in Sources */,
 				A127DDF92C1E739900B1A59B /* Exercise.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

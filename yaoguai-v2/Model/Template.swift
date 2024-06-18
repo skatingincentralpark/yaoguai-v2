@@ -31,22 +31,79 @@ struct SetTemplate: Identifiable, Codable, Equatable {
 }
 
 @Model
-final class WorkoutTemplate {
-	var name: String
-	@Relationship(deleteRule: .cascade) var exercises = [ExerciseTemplate]()
-	
-	init(name: String) {
-		self.name = name
-	}
-}
-
-@Model
 final class ExerciseTemplate {
 	var workoutTemplate: WorkoutTemplate?
 	var sets = [SetTemplate]()
 	var exerciseDetails: Exercise?
 	
-	init() {
+	init(sets: [SetTemplate]? = nil, exerciseDetails: Exercise? = nil) {
+		if let sets {
+			self.sets = sets
+		}
+		if let exerciseDetails {
+			self.exerciseDetails = exerciseDetails
+		}
+	}
+}
+
+@Model
+final class WorkoutTemplate {
+	var name: String
+	@Relationship(deleteRule: .cascade) var exercises = [ExerciseTemplate]()
+	
+	init(name: String, exercises: [ExerciseTemplate]? = nil) {
+		self.name = name
 		
+		if let exercises {
+			self.exercises = exercises
+		}
+	}
+}
+
+// MARK: - Example Extensions
+
+extension SetTemplate {
+	static var example: SetTemplate {
+		SetTemplate(value: 100.0, reps: 10, rpe: 8.0)
+	}
+}
+
+extension ExerciseTemplate {
+	enum Example {
+		static var pullups: ExerciseTemplate {
+			ExerciseTemplate(sets: [SetTemplate.example, SetTemplate.example], exerciseDetails: Exercise.example.pullups)
+		}
+		
+		static var pushups: ExerciseTemplate {
+			ExerciseTemplate(sets: [SetTemplate.example, SetTemplate.example], exerciseDetails: Exercise.example.pushups)
+		}
+		
+		static var squats: ExerciseTemplate {
+			ExerciseTemplate(sets: [SetTemplate.example, SetTemplate.example], exerciseDetails: Exercise.example.squats)
+		}
+		
+		static var deadlifts: ExerciseTemplate {
+			ExerciseTemplate(sets: [SetTemplate.example, SetTemplate.example], exerciseDetails: Exercise.example.deadlifts)
+		}
+	}
+	
+	static var example: Example.Type {
+		return Example.self
+	}
+}
+
+extension WorkoutTemplate {
+	enum Example {
+		static var upper: WorkoutTemplate {
+			WorkoutTemplate(name: "Upper", exercises: [ExerciseTemplate.example.pullups, ExerciseTemplate.example.pushups])
+		}
+		
+		static var lower: WorkoutTemplate {
+			WorkoutTemplate(name: "Lower", exercises: [ExerciseTemplate.example.squats, ExerciseTemplate.example.deadlifts])
+		}
+	}
+	
+	static var example: Example.Type {
+		return Example.self
 	}
 }

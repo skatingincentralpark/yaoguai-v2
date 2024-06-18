@@ -13,7 +13,8 @@ struct yaoguai_v2App: App {
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
 			WorkoutTemplate.self,
-			WorkoutRecord.self
+			WorkoutRecord.self,
+			Exercise.self,
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 
