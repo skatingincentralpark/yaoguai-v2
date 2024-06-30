@@ -47,6 +47,41 @@ struct ExerciseRecordView: View {
 	}
 }
 
+extension ExerciseRecordView {
+	struct ExerciseRecordHeaderRow: View {
+		var body: some View {
+			HStack {
+				Group {
+					Text("KG")
+						.frame(maxWidth: .infinity, alignment: .leading)
+					Text("Reps")
+						.frame(maxWidth: .infinity, alignment: .leading)
+					Text("RPE")
+						.frame(maxWidth: .infinity, alignment: .leading)
+				}
+				.font(.caption)
+				
+				Spacer()
+				
+				Button {} label: {
+					Image(systemName: "checkmark")
+				}
+				.buttonStyle(.bordered)
+				.tint(.white)
+				.opacity(0)
+				
+				Button {} label: {
+					Image(systemName: "xmark")
+				}
+				.buttonStyle(.bordered)
+				.tint(.white)
+				.opacity(0)
+			}
+			.foregroundStyle(.secondary)
+		}
+	}
+}
+
 #Preview {
 	let modelContainer = try! ModelContainer(for: WorkoutTemplate.self, WorkoutRecord.self, configurations: ModelConfiguration(isStoredInMemoryOnly: true))
 	

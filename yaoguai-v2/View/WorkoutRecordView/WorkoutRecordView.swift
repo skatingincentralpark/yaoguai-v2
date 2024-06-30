@@ -1,5 +1,5 @@
 //
-//  WorkoutView.swift
+//  WorkoutRecordView.swift
 //  yaoguai-v2
 //
 //  Created by Charles Zhao on 16/6/2024.
@@ -8,7 +8,7 @@
 import SwiftUI
 import SwiftData
 
-struct WorkoutView: View {
+struct WorkoutRecordView: View {
 	@Environment(\.modelContext) private var modelContext
 	@Environment(\.dismiss) private var dismiss
 	
@@ -16,7 +16,7 @@ struct WorkoutView: View {
 	
 	@Bindable var workoutRecord: WorkoutRecord
 	var workoutTemplate: WorkoutTemplate?
-	
+		
 	@State private var exerciseSelectorPresented = false
 	
 	var cancelWorkout: () -> Void
@@ -61,10 +61,6 @@ struct WorkoutView: View {
 	func deleteExerciseRecord(record: ExerciseRecord) {
 		workoutRecord.exercises = workoutRecord.exercises.filter { $0.id != record.id }
 	}
-	
-//	func deleteExerciseTemplate(template: ExerciseTemplate) {
-//		exerciseTemplates = exerciseTemplates.filter { $0.id != template.id }
-//	}
 }
 
 #Preview {
@@ -78,7 +74,7 @@ struct WorkoutView: View {
 	modelContainer.mainContext.insert(record)
 	
 	return NavigationStack {
-		WorkoutView(workoutRecord: record, cancelWorkout: {}, completeWorkout: {})
+		WorkoutRecordView(workoutRecord: record, cancelWorkout: {}, completeWorkout: {})
 			.modelContainer(modelContainer)
 	}
 }

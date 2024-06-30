@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  NavigationView.swift
 //  yaoguai-v2
 //
 //  Created by Charles Zhao on 16/6/2024.
@@ -8,7 +8,7 @@
 import SwiftUI
 import SwiftData
 
-struct ContentView: View {
+struct NavigationView: View {
 	var body: some View {
 		TabView {
 			WorkoutDashboard()
@@ -30,6 +30,6 @@ struct ContentView: View {
 	modelContainer.mainContext.insert(WorkoutTemplate.example.lower)
 	modelContainer.mainContext.insert(WorkoutTemplate.example.upper)
 	
-	return ContentView()
+	return NavigationView()
 		.modelContainer(modelContainer)
 }
