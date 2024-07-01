@@ -8,23 +8,54 @@
 import Foundation
 import SwiftData
 import SwiftUI
+import Observation
 
-final class WorkoutManager: ObservableObject {
-	@Published var currentWorkout: WorkoutRecord?
-	@Published var currentWorkoutTemplate: WorkoutTemplate?
+@Observable
+final class WorkoutManager {
+	var currentWorkout: WorkoutRecord?
+	var context: ModelContext
 	
-	func startWorkout(with template: WorkoutTemplate) {
-		let workout = WorkoutRecord(from: template)
-		currentWorkout = workout
-		currentWorkoutTemplate = template
-		// Additional logic to start the workout can be added here
+	init(context: ModelContext) {
+		self.context = context
 	}
 	
-	func endWorkout() {
-		currentWorkout = nil
-		currentWorkoutTemplate = nil
-		// Additional logic to end the workout can be added here
+	func startWorkout(_ template: WorkoutTemplate? = nil) {
+		withAnimation {
+			if currentWorkout == nil {
+				if let template {
+					currentWorkout = WorkoutRecord(from: template)
+				} else {
+					currentWorkout = WorkoutRecord()
+				}
+			}
+		}
+		
+//		workoutSheetVisible = true
 	}
 	
-	// Add more methods as needed to manage workouts
+	func cancelWorkout() {
+		withAnimation {
+			if let currentWorkout {
+				context.delete(currentWorkout)
+			}
+			currentWorkout = nil
+		}
+//		workoutSheetVisible = false
+	}
+	
+	func completeWorkout() {
+		if let currentWorkout {
+			if !currentWorkout.exercises.isEmpty {
+				withAnimation {
+					context.insert(currentWorkout)
+				}
+			} else {
+				// Since we're autosaving, need to remove from context
+				context.delete(currentWorkout)
+			}
+		}
+		
+		self.currentWorkout = nil
+//		workoutSheetVisible = false
+	}
 }

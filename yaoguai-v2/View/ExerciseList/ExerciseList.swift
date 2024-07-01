@@ -10,21 +10,14 @@ import SwiftData
 
 struct ExerciseList: View {
 	@Query private var exercises: [Exercise]
+	@Environment(\.modelContext) private var modelContext
 	
 	var body: some View {
 		NavigationStack {
 			List {
 				ForEach(exercises) { exercise in
-					Section {
-						Text(exercise.name)
-							.bold()
-						
-						ForEach(exercise.exerciseRecords) { record in
-							NavigationLink("Exercise Record") {
-								ExerciseRecordView(exerciseRecord: record, deleteExerciseRecord: { _ in })
-									.padding()
-							}
-						}
+					NavigationLink("\(exercise.name) (\(exercise.exerciseRecords.count))") {
+						ExerciseHistory(exercise: exercise)
 					}
 				}
 			}

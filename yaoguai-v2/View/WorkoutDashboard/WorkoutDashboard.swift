@@ -49,6 +49,7 @@ extension WorkoutDashboard {
 		
 		workoutSheetVisible = true
 	}
+	
 	func cancelWorkout() {
 		withAnimation {
 			if let currentWorkout {
@@ -58,9 +59,17 @@ extension WorkoutDashboard {
 		}
 		workoutSheetVisible = false
 	}
+	
 	func completeWorkout() {
 		if let currentWorkout {
 			if !currentWorkout.exercises.isEmpty {
+				
+				currentWorkout.exercises.forEach { record in
+					record.sets = record.sets.filter({ $0.complete })
+				}
+				
+				currentWorkout.exercises = currentWorkout.exercises.filter({ $0.sets.count > 0 })
+				
 				withAnimation {
 					modelContext.insert(currentWorkout)
 				}

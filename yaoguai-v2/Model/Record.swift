@@ -22,32 +22,30 @@ struct SetRecord: Identifiable, Codable, Equatable {
 			_complete
 		}
 		set {
-			autofillFromTemplate()
+			autofill()
 			template = nil
 			_complete = newValue
 		}
 	}
 	
-	private mutating func autofillFromTemplate() {
-		if let template = template {
-			if value == nil { value = template.value }
-			if reps == nil { reps = template.reps }
-			if rpe == nil { rpe = template.rpe }
-		}
+	private mutating func autofill() {
+		if value == nil { value = template?.value ?? 0 }
+		if reps == nil { reps = template?.reps ?? 0 }
+		if rpe == nil { rpe = template?.rpe ?? 0 }
 	}
 	
-	var valueString: String? {
-		guard let value = value else { return nil }
+	var valueString: String {
+		guard let value = value else { return "" }
 		return String(value)
 	}
 	
-	var rpeString: String? {
-		guard let rpe = rpe else { return nil }
+	var rpeString: String {
+		guard let rpe = rpe else { return "" }
 		return String(rpe)
 	}
 	
-	var repsString: String? {
-		guard let reps = reps else { return nil }
+	var repsString: String {
+		guard let reps = reps else { return "" }
 		return String(reps)
 	}
 }
@@ -134,7 +132,10 @@ extension SetRecord {
 
 extension ExerciseRecord {
 	static var example: ExerciseRecord {
-		ExerciseRecord(sets: [SetRecord.example.incomplete, SetRecord.example.incomplete, SetRecord()], exerciseDetails: Exercise.example.pullups)
+		ExerciseRecord(
+			sets: [SetRecord.example.incomplete, SetRecord.example.incomplete],
+			exerciseDetails: Exercise.example.pullups
+		)
 	}
 }
 
