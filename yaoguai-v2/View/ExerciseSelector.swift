@@ -25,6 +25,23 @@ struct ExerciseSelector: View {
 					modelContext.insert(Exercise(name: "Squats", unit: .kg))
 					modelContext.insert(Exercise(name: "Deadlifts", unit: .kg))
 				}
+				.onChange(of: exercises.count) { oldValue, newValue in
+					print(newValue)
+				}
+				
+				Button("Delete all") {
+					do {
+						try! modelContext.delete(model: Exercise.self)
+						print("Success")
+					} catch {
+						print("Failed")
+					}
+				}
+				
+				if exercises.count > 1 {
+					Text("Total Exercises: \(exercises.count)")
+					.bold()
+				}
 				
 				ForEach(exercises) { exercise in
 					Button {

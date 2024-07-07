@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A11F265B2C37CE8B00FD971E /* SpecialFocusTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11F265A2C37CE8B00FD971E /* SpecialFocusTextFieldStyle.swift */; };
+		A11F26622C390A2500FD971E /* WorkoutDashboardV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11F26612C390A2500FD971E /* WorkoutDashboardV2.swift */; };
 		A127DDE42C1E714E00B1A59B /* yaoguai_v2App.swift in Sources */ = {isa = PBXBuildFile; fileRef = A127DDE32C1E714E00B1A59B /* yaoguai_v2App.swift */; };
 		A127DDE62C1E714E00B1A59B /* NavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A127DDE52C1E714E00B1A59B /* NavigationView.swift */; };
 		A127DDE82C1E714E00B1A59B /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = A127DDE72C1E714E00B1A59B /* Item.swift */; };
@@ -31,9 +33,13 @@
 		A14D2CFE2C316D530034278F /* WorkoutControlsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14D2CFD2C316D530034278F /* WorkoutControlsSection.swift */; };
 		A14D2D012C320E0F0034278F /* ExerciseHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14D2D002C320E0F0034278F /* ExerciseHistory.swift */; };
 		A14D2D032C32113A0034278F /* ExerciseHistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14D2D022C32113A0034278F /* ExerciseHistoryItem.swift */; };
+		A14D2D052C34B8B90034278F /* EnvironmentValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14D2D042C34B8B90034278F /* EnvironmentValues.swift */; };
+		A19F9A1E2C374BEF000552AE /* WorkoutRecordEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19F9A1D2C374BEF000552AE /* WorkoutRecordEditor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A11F265A2C37CE8B00FD971E /* SpecialFocusTextFieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecialFocusTextFieldStyle.swift; sourceTree = "<group>"; };
+		A11F26612C390A2500FD971E /* WorkoutDashboardV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDashboardV2.swift; sourceTree = "<group>"; };
 		A127DDE02C1E714E00B1A59B /* yaoguai-v2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "yaoguai-v2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A127DDE32C1E714E00B1A59B /* yaoguai_v2App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = yaoguai_v2App.swift; sourceTree = "<group>"; };
 		A127DDE52C1E714E00B1A59B /* NavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationView.swift; sourceTree = "<group>"; };
@@ -59,6 +65,8 @@
 		A14D2CFD2C316D530034278F /* WorkoutControlsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutControlsSection.swift; sourceTree = "<group>"; };
 		A14D2D002C320E0F0034278F /* ExerciseHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseHistory.swift; sourceTree = "<group>"; };
 		A14D2D022C32113A0034278F /* ExerciseHistoryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseHistoryItem.swift; sourceTree = "<group>"; };
+		A14D2D042C34B8B90034278F /* EnvironmentValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentValues.swift; sourceTree = "<group>"; };
+		A19F9A1D2C374BEF000552AE /* WorkoutRecordEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutRecordEditor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +80,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A11F26592C37CE6A00FD971E /* Style */ = {
+			isa = PBXGroup;
+			children = (
+				A11F265A2C37CE8B00FD971E /* SpecialFocusTextFieldStyle.swift */,
+			);
+			path = Style;
+			sourceTree = "<group>";
+		};
+		A11F265C2C381FFA00FD971E /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				A14C76242C1F949600F89F2D /* WorkoutManager.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		A11F26602C390A1700FD971E /* WorkoutDashboardV2 */ = {
+			isa = PBXGroup;
+			children = (
+				A11F26612C390A2500FD971E /* WorkoutDashboardV2.swift */,
+			);
+			path = WorkoutDashboardV2;
+			sourceTree = "<group>";
+		};
 		A127DDD72C1E714E00B1A59B = {
 			isa = PBXGroup;
 			children = (
@@ -91,9 +123,11 @@
 		A127DDE22C1E714E00B1A59B /* yaoguai-v2 */ = {
 			isa = PBXGroup;
 			children = (
+				A127DDFC2C1E795F00B1A59B /* Utility */,
+				A11F265C2C381FFA00FD971E /* Service */,
+				A11F26592C37CE6A00FD971E /* Style */,
 				A127DDFD2C1E7A1100B1A59B /* View */,
 				A127DDF52C1E718900B1A59B /* Model */,
-				A127DDFC2C1E795F00B1A59B /* Utility */,
 				A127DDE32C1E714E00B1A59B /* yaoguai_v2App.swift */,
 				A127DDE92C1E715000B1A59B /* Assets.xcassets */,
 				A127DDEB2C1E715000B1A59B /* Preview Content */,
@@ -113,8 +147,8 @@
 			isa = PBXGroup;
 			children = (
 				A127DDF32C1E718600B1A59B /* Record.swift */,
+				A14D2D042C34B8B90034278F /* EnvironmentValues.swift */,
 				A127DDE72C1E714E00B1A59B /* Item.swift */,
-				A14C76242C1F949600F89F2D /* WorkoutManager.swift */,
 				A127DDF62C1E721100B1A59B /* Template.swift */,
 				A127DDF82C1E739900B1A59B /* Exercise.swift */,
 			);
@@ -133,6 +167,8 @@
 			isa = PBXGroup;
 			children = (
 				A127DDE52C1E714E00B1A59B /* NavigationView.swift */,
+				A11F26602C390A1700FD971E /* WorkoutDashboardV2 */,
+				A19F9A1F2C374BF8000552AE /* WorkoutRecordEditor */,
 				A14D2CFA2C3168420034278F /* WorkoutDashboard */,
 				A127DE072C1EB85800B1A59B /* WorkoutRecordView */,
 				A127DE062C1EB81300B1A59B /* WorkoutTemplateEditor */,
@@ -181,6 +217,14 @@
 				A14D2D022C32113A0034278F /* ExerciseHistoryItem.swift */,
 			);
 			path = ExerciseList;
+			sourceTree = "<group>";
+		};
+		A19F9A1F2C374BF8000552AE /* WorkoutRecordEditor */ = {
+			isa = PBXGroup;
+			children = (
+				A19F9A1D2C374BEF000552AE /* WorkoutRecordEditor.swift */,
+			);
+			path = WorkoutRecordEditor;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -266,13 +310,17 @@
 				A127DE0F2C1ED9B100B1A59B /* SetRecordRow.swift in Sources */,
 				A14D2D012C320E0F0034278F /* ExerciseHistory.swift in Sources */,
 				A127DDE82C1E714E00B1A59B /* Item.swift in Sources */,
+				A19F9A1E2C374BEF000552AE /* WorkoutRecordEditor.swift in Sources */,
 				A127DDF42C1E718600B1A59B /* Record.swift in Sources */,
 				A127DDFF2C1E7B7A00B1A59B /* WorkoutTemplateEditor.swift in Sources */,
 				A127DDFB2C1E795700B1A59B /* Preview.swift in Sources */,
 				A127DE052C1E8C8000B1A59B /* SetTemplateView.swift in Sources */,
+				A14D2D052C34B8B90034278F /* EnvironmentValues.swift in Sources */,
 				A14D2CFE2C316D530034278F /* WorkoutControlsSection.swift in Sources */,
+				A11F26622C390A2500FD971E /* WorkoutDashboardV2.swift in Sources */,
 				A14D2CF92C3168030034278F /* AllWorkoutRecordsSection.swift in Sources */,
 				A127DDE42C1E714E00B1A59B /* yaoguai_v2App.swift in Sources */,
+				A11F265B2C37CE8B00FD971E /* SpecialFocusTextFieldStyle.swift in Sources */,
 				A127DE092C1EB86F00B1A59B /* WorkoutRecordView.swift in Sources */,
 				A127DDF92C1E739900B1A59B /* Exercise.swift in Sources */,
 			);

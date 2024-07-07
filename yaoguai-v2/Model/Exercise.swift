@@ -17,7 +17,7 @@ enum Unit: String, Codable, CaseIterable, Identifiable {
 }
 
 @Model
-final class Exercise {
+final class Exercise: Codable {
 	@Attribute(.unique) var name: String
 	var unit: Unit
 	var exerciseRecords = [ExerciseRecord]()
@@ -25,6 +25,20 @@ final class Exercise {
 	init(name: String, unit: Unit) {
 		self.name = name
 		self.unit = unit
+	}
+	
+	enum CodingKeys: CodingKey {
+	  case name, unit
+	}
+	required init(from decoder: Decoder) throws {
+		let container = try decoder.container(keyedBy: CodingKeys.self)
+		self.name = try container.decode(String.self, forKey: .name)
+		self.unit = try container.decode(Unit.self, forKey: .unit)
+	}
+	func encode(to encoder: Encoder) throws {
+	  var container = encoder.container(keyedBy: CodingKeys.self)
+	  try container.encode(name, forKey: .name)
+	  try container.encode(unit, forKey: .unit)
 	}
 }
 

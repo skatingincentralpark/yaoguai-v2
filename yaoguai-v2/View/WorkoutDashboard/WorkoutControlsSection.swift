@@ -13,14 +13,16 @@ struct WorkoutControlsSection: View {
 	let cancelWorkout: () -> Void
 	
     var body: some View {
-		Section {
+		HStack {
 			Button(currentWorkout == nil ? "Start Blank Workout" : "Continue Workout") {
 				startWorkout(nil)
 			}
+			.buttonStyle(.borderedProminent)
 			if currentWorkout != nil {
 				Button("Cancel") {
 					cancelWorkout()
 				}
+				.buttonStyle(.bordered)
 			}
 		}
     }

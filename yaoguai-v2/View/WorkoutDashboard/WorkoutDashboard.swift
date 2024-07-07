@@ -10,26 +10,38 @@ import SwiftData
 
 struct WorkoutDashboard: View {
 	@Environment(\.modelContext) private var modelContext
+	@Environment(WorkoutManager.self) private var workoutManager: WorkoutManager
 	
 	@State private var navigationPath = NavigationPath()
-	@State private var currentWorkout: WorkoutRecord?
 	@State private var workoutSheetVisible = false
-
+	
 	var body: some View {
 		NavigationStack(path: $navigationPath) {
 			List {
-				TemplateSection(startWorkout: startWorkout, currentWorkout: currentWorkout, navigationPath: $navigationPath)
-				WorkoutControlsSection(currentWorkout: currentWorkout, startWorkout: startWorkout, cancelWorkout: cancelWorkout)
+//				TemplateSection(startWorkout: startWorkout, currentWorkout: currentWorkout, navigationPath: $navigationPath)
 				AllWorkoutRecordsSection()
+				NavigationLink("WWW") {
+					WorkoutRecordEditor(initialName: workoutManager.name,
+										initialExercises: workoutManager.exercises,
+										workoutRecord: workoutManager.currentWorkout,
+										autosave: workoutManager.save)
+				}
 			}
+			.safeAreaInset(edge: .bottom, content: {
+				WorkoutControlsSection(currentWorkout: workoutManager.currentWorkout, startWorkout: startWorkout, cancelWorkout: cancelWorkout)
+			})
 			.navigationTitle("Yaoguai")
 			.navigationDestination(for: WorkoutTemplate.self) { template in
 				WorkoutTemplateEditor(existingTemplate: template)
 			}
-			.sheet(isPresented: $workoutSheetVisible) {
-				if let currentWorkout {
-					WorkoutRecordView(workoutRecord: currentWorkout, cancelWorkout: cancelWorkout, completeWorkout: completeWorkout)
-				}
+//			.sheet(isPresented: $workoutSheetVisible) {
+//				WorkoutRecordEditor(initialName: workoutManager.name,
+//									initialExercises: workoutManager.exercises,
+//									workoutRecord: workoutManager.currentWorkout,
+//									autosave: workoutManager.save)
+//			}
+			.onChange(of: workoutManager.name) { oldValue, newValue in
+				print("Change from \(oldValue) to \(newValue)")
 			}
 		}
 	}
@@ -37,31 +49,23 @@ struct WorkoutDashboard: View {
 
 extension WorkoutDashboard {
 	func startWorkout(_ template: WorkoutTemplate? = nil) {
-		withAnimation {
-			if currentWorkout == nil {
-				if let template {
-					currentWorkout = WorkoutRecord(from: template)
-				} else {
-					currentWorkout = WorkoutRecord()
-				}
-			}
+		if workoutManager.currentWorkout == nil {
+			if let template { workoutManager.currentWorkout = WorkoutRecord(from: template) }
+			else { workoutManager.currentWorkout = WorkoutRecord() }
 		}
-		
 		workoutSheetVisible = true
 	}
 	
 	func cancelWorkout() {
-		withAnimation {
-			if let currentWorkout {
-				modelContext.delete(currentWorkout)
-			}
-			currentWorkout = nil
+		if let currentWorkout = workoutManager.currentWorkout {
+			modelContext.delete(currentWorkout)
 		}
+		workoutManager.currentWorkout = nil
 		workoutSheetVisible = false
 	}
 	
 	func completeWorkout() {
-		if let currentWorkout {
+		if let currentWorkout = workoutManager.currentWorkout {
 			if !currentWorkout.exercises.isEmpty {
 				
 				currentWorkout.exercises.forEach { record in
@@ -79,7 +83,7 @@ extension WorkoutDashboard {
 			}
 		}
 		
-		self.currentWorkout = nil
+		workoutManager.currentWorkout = nil
 		workoutSheetVisible = false
 	}
 }
@@ -89,7 +93,11 @@ extension WorkoutDashboard {
 	
 	modelContainer.mainContext.insert(WorkoutTemplate.example.lower)
 	modelContainer.mainContext.insert(WorkoutTemplate.example.upper)
-
+	
+	var workoutManager: WorkoutManager
+	workoutManager = WorkoutManager(modelContext: modelContainer.mainContext)
+	
 	return WorkoutDashboard()
 		.modelContainer(modelContainer)
+		.environment(workoutManager)
 }

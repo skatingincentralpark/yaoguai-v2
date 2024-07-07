@@ -10,25 +10,33 @@ import SwiftData
 
 @main
 struct yaoguai_v2App: App {
-    var sharedModelContainer: ModelContainer = {
-        let schema = Schema([
+	let sharedModelContainer: ModelContainer
+	
+	@State private var workoutManager: WorkoutManager
+	
+	init() {
+		let schema = Schema([
 			WorkoutTemplate.self,
 			WorkoutRecord.self,
 			Exercise.self,
-        ])
-        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
-
-        do {
-            return try ModelContainer(for: schema, configurations: [modelConfiguration])
-        } catch {
-            fatalError("Could not create ModelContainer: \(error)")
-        }
-    }()
-
-    var body: some Scene {
-        WindowGroup {
-            NavigationView()
-        }
-        .modelContainer(sharedModelContainer)
-    }
+		])
+		
+		let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
+		
+		do {
+			let modelContainer = try ModelContainer(for: schema, configurations: [modelConfiguration])
+			sharedModelContainer = modelContainer
+			_workoutManager = State(initialValue: WorkoutManager(modelContext: modelContainer.mainContext))
+		} catch {
+			fatalError("Could not create ModelContainer: \(error)")
+		}
+	}
+	
+	var body: some Scene {
+		WindowGroup {
+			NavigationView()
+		}
+		.modelContainer(sharedModelContainer)
+		.environment(workoutManager)
+	}
 }

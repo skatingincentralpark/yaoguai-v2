@@ -45,7 +45,7 @@ struct WorkoutRecordView: View {
 		}
 		.sheet(isPresented: $exerciseSelectorPresented) {
 			ExerciseSelector(addExercise: addExercise)
-		}	
+		}
     }
 	
 	func finishWorkout() {

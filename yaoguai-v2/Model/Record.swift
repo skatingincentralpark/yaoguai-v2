@@ -57,7 +57,7 @@ extension SetRecord {
 }
 
 @Model
-final class ExerciseRecord {
+final class ExerciseRecord: Codable {
 	var workoutRecord: WorkoutRecord?
 	var sets = [SetRecord]()
 	var exerciseDetails: Exercise?
@@ -78,10 +78,24 @@ final class ExerciseRecord {
 			SetRecord(from: setTemplate)
 		}
 	}
+	
+	enum CodingKeys: CodingKey {
+	  case sets, exerciseDetails
+	}
+	required init(from decoder: Decoder) throws {
+		let container = try decoder.container(keyedBy: CodingKeys.self)
+		self.sets = try container.decode([SetRecord].self, forKey: .sets)
+		self.exerciseDetails = try container.decode(Exercise.self, forKey: .exerciseDetails)
+	}
+	func encode(to encoder: Encoder) throws {
+	  var container = encoder.container(keyedBy: CodingKeys.self)
+	  try container.encode(sets, forKey: .sets)
+	  try container.encode(exerciseDetails, forKey: .exerciseDetails)
+	}
 }
 
 @Model
-final class WorkoutRecord {
+final class WorkoutRecord: Codable {
 	var name = ""
 	var date: Date = Date()
 	@Relationship(deleteRule: .cascade) var exercises = [ExerciseRecord]()
@@ -99,10 +113,29 @@ final class WorkoutRecord {
 		self.exercises = template.exercises.map { template in
 			ExerciseRecord(from: template)
 		}
+		
+		print(self.name)
+		print(self.exercises.count)
 	}
 	
 	init() {
 		
+	}
+	
+	enum CodingKeys: CodingKey {
+	  case name, date, exercises
+	}
+	required init(from decoder: Decoder) throws {
+		let container = try decoder.container(keyedBy: CodingKeys.self)
+		self.name = try container.decode(String.self, forKey: .name)
+		self.date = try container.decode(Date.self, forKey: .date)
+		self.exercises = try container.decode([ExerciseRecord].self, forKey: .exercises)
+	}
+	func encode(to encoder: Encoder) throws {
+		var container = encoder.container(keyedBy: CodingKeys.self)
+		try container.encode(name, forKey: .name)
+		try container.encode(date, forKey: .date)
+		try container.encode(exercises, forKey: .exercises)
 	}
 }
 

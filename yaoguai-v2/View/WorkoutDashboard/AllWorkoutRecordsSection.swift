@@ -17,7 +17,9 @@ struct AllWorkoutRecordsSection: View {
 			if workoutRecords.count > 0 {
 				ForEach(workoutRecords) { record in
 					NavigationLink {
-						WorkoutRecordView(workoutRecord: record, cancelWorkout: {}, completeWorkout: {})
+						WorkoutRecordView(workoutRecord: record, cancelWorkout: {
+							print("undoing")
+						}, completeWorkout: {})
 					} label: {
 						HStack {
 							Text(record.name)

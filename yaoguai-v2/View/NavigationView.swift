@@ -11,7 +11,7 @@ import SwiftData
 struct NavigationView: View {
 	var body: some View {
 		TabView {
-			WorkoutDashboard()
+			WorkoutDashboardV2()
 				.tabItem {
 					Label("Workouts", systemImage: "list.clipboard.fill")
 				}
